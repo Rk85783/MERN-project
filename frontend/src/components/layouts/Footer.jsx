@@ -1,0 +1,31 @@
+import React from "react";
+import playStore from "/images/playstore.png"
+import appStore from "/images/appstore.png"
+
+const Footer = () => {
+  return (
+    <footer>
+      <div>
+        <h4>Download Our App</h4>
+        <p>Downlaod App for Android and iOS mobile phone</p>
+        <img src={playStore} alt="playstore" />
+        <img src={appStore} alt="appstore" />
+      </div>
+
+      <div>
+        <h1>RK</h1>
+        <p>High Quality is our first priority</p>
+        <p>Copyrights 2026 &copy; Rk85783</p>
+      </div>
+
+      <div>
+        <h4>Follow Us</h4>
+        <a href="">Instagram</a>
+        <a href="">Youtube</a>
+        <a href="">Facebook</a>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
