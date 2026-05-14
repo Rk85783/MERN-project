@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const productSchema = mongoose.Schema({
+const productSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Please Enter product name"],
@@ -13,7 +13,7 @@ const productSchema = mongoose.Schema({
   price: {
     type: Number,
     required: [true, "Please Enter product price"],
-    maxLength: [true, "Price cannot exceed 8 characters"],
+    max: [99999999, "Price cannot exceed 8 characters"],
   },
   rating: {
     type: Number,
@@ -38,7 +38,7 @@ const productSchema = mongoose.Schema({
   stock: {
     type: Number,
     required: [true, "Please Enter product stock"],
-    maxLength: [4, "Stock cannot exceed 4 characters"],
+    max: [9999, "Stock cannot exceed 4 characters"],
   },
   numOfReviews: {
     type: Number,
@@ -60,10 +60,15 @@ const productSchema = mongoose.Schema({
       },
     },
   ],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("Product", productSchema);

@@ -4,6 +4,7 @@ const ApiFeatures = require("../utils/apiFeatures");
 const ErrorHandler = require("../utils/errorHandler");
 
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
+  req.body.user = req.user._id;
   const product = await Product.create(req.body);
   res.status(201).json({
     success: true,
@@ -59,7 +60,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Product not found", 404));
   }
 
-  await product.remove();
+  await product.deleteOne();
 
   res.status(200).json({
     success: true,

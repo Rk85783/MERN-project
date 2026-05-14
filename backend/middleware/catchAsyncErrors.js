@@ -1,3 +1,3 @@
 module.exports = (theFn) => (req, res, next) => {
-  Promise.resolve(theFn(req, req, next)).catch(next);
+  Promise.resolve(theFn(req, res, next)).catch(next);
 };
