@@ -6,9 +6,12 @@ const sendToken = (user, statusCode, res) => {
     httpOnly: true,
   };
 
+  const userData = user.toObject();
+  delete userData.password;
+
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
-    user,
+    user: userData,
     token,
   });
 };

@@ -80,6 +80,9 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
   };
 
   const product = await Product.findById(productId);
+  if (!product) {
+    return next(new ErrorHandler("Product not found", 404));
+  }
   const isReviewed = product.reviews.find((rev) => rev.user.toString() === req.user._id);
 
   if (isReviewed) {
